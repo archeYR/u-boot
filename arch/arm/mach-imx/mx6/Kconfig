@@ -395,6 +395,13 @@ config TARGET_MX6SLEVK
 	select SUPPORT_SPL
 	imply OF_UPSTREAM
 
+config TARGET_MX6SLPB631
+	bool "mx6slpb631"
+	select DM
+	select DM_THERMAL
+	depends on MX6SL
+	imply CMD_DM
+
 config TARGET_MX6SLLEVK
 	bool "mx6sll evk"
 	depends on MX6SLL
@@ -727,6 +734,7 @@ source "board/phytec/pcl063/Kconfig"
 source "board/gateworks/gw_ventana/Kconfig"
 source "board/kontron/sl-mx6ul/Kconfig"
 source "board/kosagi/novena/Kconfig"
+source "board/pocketbook/mx6slpb631/Kconfig"
 source "board/softing/vining_2000/Kconfig"
 source "board/liebherr/display5/Kconfig"
 source "board/liebherr/mccmon6/Kconfig"

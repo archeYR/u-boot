@@ -1,0 +1,15 @@
+if TARGET_MX6SLPB631
+
+config SYS_BOARD
+	default "mx6slpb631"
+
+config SYS_VENDOR
+	default "pocketbook"
+
+config SYS_CONFIG_NAME
+	default "mx6slpb631"
+
+config IMX_CONFIG
+	default "board/pocketbook/mx6slpb631/imximage.cfg"
+
+endif
