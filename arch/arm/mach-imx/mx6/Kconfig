@@ -401,6 +401,7 @@ config TARGET_MX6SLPB631
 	select DM_THERMAL
 	depends on MX6SL
 	imply CMD_DM
+	imply OF_UPSTREAM
 
 config TARGET_MX6SLLEVK
 	bool "mx6sll evk"
