@@ -14,7 +14,7 @@
 
 /* MMC Configs */
 #define CFG_SYS_FSL_ESDHC_ADDR	USDHC2_BASE_ADDR
-
+#if 0
 #define CFG_EXTRA_ENV_SETTINGS \
 	"script=boot.scr\0" \
 	"image=zImage\0" \
@@ -89,7 +89,23 @@
 			   "fi; " \
 		   "fi; " \
 	   "else fastboot 0; fi"
-
+#endif
+#if 0
+#define CONFIG_BOOTCOMMAND \
+	   "mmc dev 0;" \
+	   "pstore save mmc 0:1 /;" \
+	   "ums 0 mmc 0;" \
+	   "fastboot 0;" \
+	   "led pocketbookpb631:green:on on;"
+#else
+#define CONFIG_BOOTCOMMAND \
+	   "mmc dev 0;" \
+	   "load mmc 0:1 0x82000000 vmlinuz;" \
+	   "load mmc 0:1 0x83000000 initramfs;" \
+	   "load mmc 0:1 0x88000000 imx6sl-pocketbook-pb631.dtb;" \
+	   "fastboot 0;" \
+	   "led pocketbookpb631:green:on on;"
+#endif
 /* Miscellaneous configurable options */
 
 /* Physical Memory Map */
