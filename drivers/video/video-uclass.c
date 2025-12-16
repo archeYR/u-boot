@@ -596,6 +596,9 @@ static int video_post_probe(struct udevice *dev)
 		snprintf(drv, sizeof(drv), "vidconsole%d", priv->rot);
 	}
 
+	/* HACK */
+	priv->vidconsole_drv_name = "vidconsole0";
+
 	str = strdup(name);
 	if (!str)
 		return -ENOMEM;
