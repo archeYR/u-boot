@@ -1,0 +1,12 @@
+if TARGET_OMAP4_COSMO
+
+config SYS_BOARD
+	default "cosmo"
+
+config SYS_VENDOR
+	default "lg"
+
+config SYS_CONFIG_NAME
+	default "omap4_cosmo"
+
+endif

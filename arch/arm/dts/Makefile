@@ -1013,6 +1013,9 @@ dtb-$(CONFIG_TARGET_OMAP3_BEAGLE) += \
 
 dtb-$(CONFIG_TARGET_DEVKIT8000) += omap3-devkit8000.dtb
 
+dtb-$(CONFIG_TARGET_OMAP4_COSMO) += \
+	omap4-lge-p920.dtb
+
 dtb-$(CONFIG_TARGET_OMAP4_PANDA) += \
 	omap4-panda.dtb \
 	omap4-panda-es.dtb

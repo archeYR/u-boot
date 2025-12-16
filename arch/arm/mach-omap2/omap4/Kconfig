@@ -10,6 +10,9 @@ config TARGET_OMAP4_PANDA
 config TARGET_OMAP4_SDP4430
 	bool "TI OMAP4 SDP4430"
 
+config TARGET_OMAP4_COSMO
+	bool "LG P920 (Cosmo)"
+
 endchoice
 
 config SYS_SOC
@@ -17,5 +20,6 @@ config SYS_SOC
 
 source "board/ti/panda/Kconfig"
 source "board/ti/sdp4430/Kconfig"
+source "board/lg/cosmo/Kconfig"
 
 endif
