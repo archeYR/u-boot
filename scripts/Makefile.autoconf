@@ -134,7 +134,7 @@ ifdef CONFIG_CREATE_ARCH_SYMLINK
 ifdef building_out_of_srctree
 	$(Q)mkdir -p include/asm
 	$(Q)if [ -d $(srctree)/arch/$(ARCH)/mach-$(SOC)/include/mach ]; then	\
-		dest=arch/$(ARCH)/mach-$(SOC)/include/mach;			\
+		dest=../../arch/$(ARCH)/mach-$(SOC)/include/mach;		\
 	else									\
 		dest=arch/$(ARCH)/include/asm/arch-$(if $(SOC),$(SOC),$(CPU));	\
 	fi;									\
