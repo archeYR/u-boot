@@ -67,7 +67,7 @@ static const char *sm8450_get_pin_name(struct udevice *dev,
 	return pin_name;
 }
 
-static unsigned int sm8450_get_function_mux(__maybe_unused unsigned int pin,
+static int sm8450_get_function_mux(__maybe_unused unsigned int pin,
 					    unsigned int selector)
 {
 	return msm_pinctrl_functions[selector].val;
@@ -87,6 +87,7 @@ static struct msm_pinctrl_data sm8450_data = {
 
 static const struct udevice_id msm_pinctrl_ids[] = {
 	{ .compatible = "qcom,sm8450-tlmm", .data = (ulong)&sm8450_data },
+	{ .compatible = "qcom,sm8475-tlmm", .data = (ulong)&sm8450_data },
 	{ /* Sentinel */ }
 };
 
