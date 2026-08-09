@@ -934,6 +934,12 @@ config VIDEO_NX
 	   HDMI. This option enables this support which can be used on devices
 	   which have an eDP display connected.
 
+config VIDEO_GX1FB
+	bool "Geode GX1 framebuffer"
+	imply VIDEO_DAMAGE
+	help
+	  A dumb driver for Geode GX1 that sets 16BPP mode
+
 config VIDEO_SEPS525
 	bool "Enable video support for Seps525"
 	depends on DM_GPIO
