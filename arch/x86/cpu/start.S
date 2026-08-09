@@ -31,6 +31,32 @@
 
 .section .text.start
 .code32
+#ifdef CONFIG_TARGET_NETXFER
+	/* Add a net boot image header so U-Boot can be loaded by NETXFER */
+netboot_header:
+	/* magic */
+	.long	0x1b031336
+	/* length */
+	.long	4
+	/* location in ds:bx format */
+	.long	0x0000c00d
+	 /* execute address in cs:ip format */
+	.long	0x0000c200
+	/* U-Boot binary entry */
+	/* flags */
+	.long	0x04000004 /* flags = last, absolute address, 16 bytes this record, no vendor info */
+	/* load addr */
+	.long	CONFIG_TEXT_BASE + 512
+	/* length */
+	.long	_end - _start + /* HACK! padding for device tree */ 0x1000
+	.long	_end - _start + /* HACK! padding for device tree */ 0x1000
+	/* padding */
+	.space 	467
+	.byte	0xea
+	.long	CONFIG_TEXT_BASE + 512
+	.long	0x0008
+	.space 	4
+#endif
 .globl _start
 .type _start, @function
 .globl _x86boot_start
@@ -175,6 +201,8 @@ skip_hob:
 
 	/* Enter, U-Boot! */
 	call	board_init_f
+
+	call beep
 
 	/* indicate (lack of) progress */
 	movw	$0x85, %ax
