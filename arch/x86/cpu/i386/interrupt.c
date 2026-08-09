@@ -273,12 +273,12 @@ int interrupt_init(void)
 		return 0;
 
 	/* Try to set up the interrupt router, but don't require one */
-	ret = irq_first_device_type(X86_IRQT_BASE, &dev);
+	//ret = irq_first_device_type(X86_IRQT_BASE, &dev);
 	if (ret && ret != -ENODEV)
 		return ret;
 
 	/* Just in case... */
-	disable_interrupts();
+	//disable_interrupts();
 
 #ifdef CONFIG_I8259_PIC
 	/* Initialize the master/slave i8259 pic */
@@ -293,7 +293,7 @@ int interrupt_init(void)
 	cpu_init_interrupts();
 
 	/* It is now safe to enable interrupts */
-	enable_interrupts();
+	//enable_interrupts();
 
 	return 0;
 }
