@@ -1,0 +1,19 @@
+if TARGET_NETXFER
+
+config SYS_BOARD
+	default "netxfer"
+
+config SYS_VENDOR
+	default "wyse"
+
+config SYS_SOC
+	default "netxfer"
+
+config TEXT_BASE
+	default 0x0100000
+
+config BOARD_SPECIFIC_OPTIONS # dummy
+	def_bool y
+	select NETXFER
+
+endif

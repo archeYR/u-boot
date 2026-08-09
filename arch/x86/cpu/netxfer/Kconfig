@@ -1,0 +1,8 @@
+# SPDX-License-Identifier: GPL-2.0+
+#
+# Copyright (C) 2015, Bin Meng <bmeng.cn@gmail.com>
+
+config NETXFER
+	bool
+	imply USB
+	imply USB_OHCI_HCD

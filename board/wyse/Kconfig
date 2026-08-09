@@ -1,0 +1,19 @@
+# SPDX-License-Identifier: GPL-2.0+
+#
+# Copyright (C) 2015, Bin Meng <bmeng.cn@gmail.com>
+
+if VENDOR_WYSE
+
+choice
+	prompt "Mainboard model"
+
+config TARGET_NETXFER
+	bool "NETXFER"
+	help
+	  Seelect this to enable support for devices using Wyse NETXFER recovery environment.
+
+endchoice
+
+source "board/wyse/netxfer/Kconfig"
+
+endif

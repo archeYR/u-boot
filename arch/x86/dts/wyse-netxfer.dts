@@ -1,0 +1,126 @@
+// SPDX-License-Identifier: GPL-2.0+
+/*
+ * Copyright (C) 2015, Bin Meng <bmeng.cn@gmail.com>
+ */
+
+/dts-v1/;
+
+#include <dt-bindings/interrupt-router/intel-irq.h>
+
+/include/ "skeleton.dtsi"
+/include/ "rtc.dtsi"
+/include/ "pcspkr.dtsi"
+
+#include "tsc_timer.dtsi"
+#include "smbios.dtsi"
+
+/ {
+	model = "Wyse NETXFER recovery environment";
+	compatible = "wyse,netxfer";
+
+	framebuffer@40800000 {
+		compatible = "simple-framebuffer";
+		reg = <0x40800000 (800 * 600 * 1)>;
+		width = <800>;
+		height = <600>;
+		stride = <(800 * 1)>;
+		format = "r3g3b2";
+		status = "disabled";
+	};
+
+	fb@40008300 {
+		compatible = "nsc,gx1-fb";
+		reg = <0x40008300 0x200>;
+		status = "okay";
+		bootph-all;
+	};
+
+	pci {
+		compatible = "pci-x86";
+		#address-cells = <3>;
+		#size-cells = <2>;
+		bootph-all;
+		ranges = <0x02000000 0x0 0x80000000 0x80000000 0 0x40000000
+			  0x42000000 0x0 0xc0000000 0xc0000000 0 0x20000000
+			  0x01000000 0x0 0x2000 0x2000 0 0xe000>;
+
+		pci@12,0 {
+			compatible = "pci-bridge";
+			bootph-all;
+		};
+
+		pci@13,0 {
+			compatible = "pci-generic";
+			bootph-all;
+		};
+
+		pch@1,0 {
+			reg = <0x00000800 0 0 0 0>;
+			compatible = "intel,pch7";
+			bootph-all;
+
+			irq-router {
+				compatible = "intel,irq-router";
+				bootph-all;
+				intel,pirq-config = "pci";
+				intel,pirq-link = <0x60 4>;
+				intel,pirq-mask = <0xdefa>;
+				intel,pirq-routing = <
+					/* TI PCI1410APGE CardBus controller */
+					PCI_BDF(0, 14, 0) INTA PIRQD
+					PCI_BDF(0, 14, 0) INTB PIRQC
+					PCI_BDF(0, 14, 0) INTC PIRQB
+					PCI_BDF(0, 14, 0) INTD PIRQE
+					/* DP83815 Ethernet Controller */
+					PCI_BDF(0, 15, 0) INTA PIRQE
+					PCI_BDF(0, 15, 0) INTB PIRQA
+					PCI_BDF(0, 15, 0) INTC PIRQA
+					PCI_BDF(0, 15, 0) INTD PIRQA
+					/* Bridge Configuration */
+					PCI_BDF(0, 18, 0) INTA PIRQC
+					PCI_BDF(0, 18, 0) INTB PIRQB
+					PCI_BDF(0, 18, 0) INTC PIRQE
+					PCI_BDF(0, 18, 0) INTD PIRQD
+					/* SMI Status and ACPI Timer */
+					PCI_BDF(0, 18, 1) INTA PIRQC
+					PCI_BDF(0, 18, 1) INTB PIRQB
+					PCI_BDF(0, 18, 1) INTC PIRQE
+					PCI_BDF(0, 18, 1) INTD PIRQD
+					/* IDE Controller */
+					PCI_BDF(0, 18, 2) INTA PIRQC
+					PCI_BDF(0, 18, 2) INTB PIRQB
+					PCI_BDF(0, 18, 2) INTC PIRQE
+					PCI_BDF(0, 18, 2) INTD PIRQD
+					/* XpressAUDIO Subsystem */
+					PCI_BDF(0, 18, 3) INTA PIRQC
+					PCI_BDF(0, 18, 3) INTB PIRQB
+					PCI_BDF(0, 18, 3) INTC PIRQE
+					PCI_BDF(0, 18, 3) INTD PIRQD
+					/* Video Controller */
+					PCI_BDF(0, 18, 4) INTA PIRQC
+					PCI_BDF(0, 18, 4) INTB PIRQB
+					PCI_BDF(0, 18, 4) INTC PIRQE
+					PCI_BDF(0, 18, 4) INTD PIRQD
+					/* USB Controller */
+					PCI_BDF(0, 19, 0) INTA PIRQC
+					PCI_BDF(0, 19, 0) INTB PIRQB
+					PCI_BDF(0, 19, 0) INTC PIRQE
+					PCI_BDF(0, 19, 0) INTD PIRQD
+				>;
+			};
+		};
+
+	};
+
+	cpus {
+		#address-cells = <1>;
+		#size-cells = <0>;
+
+		cpu@0 {
+			device_type = "cpu";
+			compatible = "cpu-x86";
+			reg = <0>;
+			intel,apic-id = <0>;
+		};
+	};
+};

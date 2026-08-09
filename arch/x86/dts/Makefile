@@ -17,6 +17,7 @@ dtb-y += bayleybay.dtb \
 	galileo.dtb \
 	minnowmax.dtb \
 	qemu-x86_i440fx.dtb \
+	wyse-netxfer.dtb \
 	qemu-x86_q35.dtb \
 	theadorable-x86-dfi-bt700.dtb \
 	slimbootloader.dtb \

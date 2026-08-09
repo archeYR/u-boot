@@ -86,6 +86,9 @@ config VENDOR_GOOGLE
 config VENDOR_INTEL
 	bool "Intel"
 
+config VENDOR_WYSE
+	bool "wyse"
+
 endchoice
 
 # subarchitectures-specific options below
@@ -113,6 +116,7 @@ source "board/efi/Kconfig"
 source "board/emulation/Kconfig"
 source "board/google/Kconfig"
 source "board/intel/Kconfig"
+source "board/wyse/Kconfig"
 
 # platform-specific options below
 source "arch/x86/cpu/apollolake/Kconfig"
@@ -127,6 +131,7 @@ source "arch/x86/cpu/quark/Kconfig"
 source "arch/x86/cpu/queensbay/Kconfig"
 source "arch/x86/cpu/slimbootloader/Kconfig"
 source "arch/x86/cpu/tangier/Kconfig"
+source "arch/x86/cpu/netxfer/Kconfig"
 
 # architecture-specific options below
 
