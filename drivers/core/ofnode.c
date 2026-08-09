@@ -406,7 +406,8 @@ int ofnode_read_u32(ofnode node, const char *propname, u32 *outp)
 
 u32 ofnode_read_u32_default(ofnode node, const char *propname, u32 def)
 {
-	assert(ofnode_valid(node));
+	log_debug("propname %s\n", propname);
+	//assert(ofnode_valid(node));
 	ofnode_read_u32_index(node, propname, 0, &def);
 
 	return def;
@@ -418,7 +419,8 @@ int ofnode_read_u32_index(ofnode node, const char *propname, int index,
 	const fdt32_t *cell;
 	int len;
 
-	assert(ofnode_valid(node));
+	log_debug("propname %s\n", propname);
+	//assert(ofnode_valid(node));
 	log_debug("%s: %s: ", __func__, propname);
 
 	if (ofnode_is_np(node))
