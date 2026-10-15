@@ -111,6 +111,9 @@ static int kbd_write(int reg, int value)
 		return -1;
 	out8(reg, value);
 
+	/* Give the old i8042 a moment to think it through */
+	udelay(8000);
+
 	return 0;
 }
 
