@@ -10,6 +10,7 @@
 /include/ "skeleton.dtsi"
 /include/ "rtc.dtsi"
 /include/ "pcspkr.dtsi"
+/include/ "keyboard.dtsi"
 
 #include "tsc_timer.dtsi"
 #include "smbios.dtsi"
@@ -31,6 +32,13 @@
 	fb@40008300 {
 		compatible = "nsc,gx1-fb";
 		reg = <0x40008300 0x200>;
+		status = "okay";
+		bootph-all;
+	};
+
+	watchdog@9000 {
+		compatible = "nsc,scx200-wdt";
+		reg = <0x9000 0x8>;
 		status = "okay";
 		bootph-all;
 	};
