@@ -46,6 +46,7 @@ obj-$(CONFIG_WDT_OMAP3) += omap_wdt.o
 obj-$(CONFIG_WDT_RENESAS) += renesas_wdt.o
 obj-$(CONFIG_WDT_RENESAS_WWDT) += renesas_wwdt.o
 obj-$(CONFIG_WDT_SBSA) += sbsa_gwdt.o
+obj-$(CONFIG_WDT_SCX200) += scx200_wdt.o
 obj-$(CONFIG_WDT_K3_RTI) += rti_wdt.o
 obj-$(CONFIG_WDT_SIEMENS_PMIC) += siemens_pmic_wdt.o
 obj-$(CONFIG_WDT_SL28CPLD) += sl28cpld-wdt.o
