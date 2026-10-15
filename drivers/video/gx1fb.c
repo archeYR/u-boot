@@ -22,26 +22,12 @@
 #define DC_LINE_DELTA		0x24
 #define DC_BUF_SIZE		0x28
 
-#define MC_GBASE_ADD		0x14
-#  define MC_GADD_GBADD_MASK		0x000003ff
-
 
 #define MC_REGS 0x8400
 
 unsigned gx1_gx_base(void);
 extern int gx1_dram_bank_size(char bank);
-
-int gx1_frame_buffer_size(void)
-{
-	void *mc_regs;
-	unsigned fb_base;
-
-	mc_regs = (void *)(gx1_gx_base() + MC_REGS);
-
-	fb_base = (readl(mc_regs + MC_GBASE_ADD) & MC_GADD_GBADD_MASK) << 19;
-
-	return (gx1_dram_bank_size(0) + gx1_dram_bank_size(1)) - fb_base;
-}
+extern int gx1_frame_buffer_size(void);
 
 static int gx1_line_delta(int xres, int bpp)
 {
